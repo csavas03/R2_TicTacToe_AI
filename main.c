@@ -5,17 +5,17 @@
 //0=none 1=X 2=O 3=draw
 int get_win(char *m){
 	for(int i=0;i<3;i++){//Horizontal
-		if(m[i*3 + 0] == m[i*3 + 1] && m[i*3 + 1] == m[i*3 + 2]){
+		if(m[i*3 + 0] == m[i*3 + 1] && m[i*3 + 1] == m[i*3 + 2] && m[i*3 + 2]){
 			return m[i*3 + 0];
 		}
 	}
 	for(int i=0;i<3;i++){//Vertical
-		if(m[i + 0*3] == m[i + 1*3] && m[i + 1*3] == m[i + 2*3]){
+		if(m[i + 0*3] == m[i + 1*3] && m[i + 1*3] == m[i + 2*3] && m[i + 2*3]){
 			return m[i + 0*3];
 		}
 	}
-	if(m[0] == m[4] && m[4] == m[8]) return m[0];//Diag 0-8
-	if(m[2] == m[4] && m[4] == m[6]) return m[2];//Diag 2-6
+	if(m[0] == m[4] && m[4] == m[8] && m[8]) return m[0];//Diag 0-8
+	if(m[2] == m[4] && m[4] == m[6] && m[6]) return m[2];//Diag 2-6
 
 	int s = 0;
 	for(int i=0;i<9;i++) if(m[i]) s++;
@@ -47,7 +47,7 @@ int minmax(char *m, int player, int depth){//Player = 1/2
 int get_move(char *m){
 	int mv = minmax(m, 2, 0);
 
-	for(int i=0;i<9;i++){
+	/*for(int i=0;i<9;i++){
 		if(m[i]) continue;
 		char q[3*3];
 		memcpy(q, m, 3*3);
@@ -56,7 +56,7 @@ int get_move(char *m){
 			//if(mv != i) fprintf(stderr, "Earlier win correction\n");
 			return i;
 		}
-	}
+	}*/
 
 	return mv;
 }
